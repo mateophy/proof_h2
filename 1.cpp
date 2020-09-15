@@ -9,7 +9,10 @@ int main(int argc, char **argv)
     int N = std::atoi(argv[1]);
     int maxval = -1, n0max = -1;
     for (int ii = 1; ii <= N; ++ii) {
-        // fill here
+        if (maximum_collatz(ii) > maxval){
+          maxval = maximum_collatz(ii);
+          n0max = ii;
+        }
     }
     std::cout << n0max << " -> " << maxval << "\n";
   
@@ -25,5 +28,13 @@ int next_collatz_term(int n)
 
 int maximum_collatz(int n0)
 {
-    // fill here
+    int mx=n0;
+    while (n0 > 1){
+      n0 = next_collatz_term(n0);
+      if (n0 > mx){
+        mx=n0;
+      }
+
+    }
+    return mx;
 }
